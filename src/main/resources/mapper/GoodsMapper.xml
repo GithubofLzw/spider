@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.lzw.springbootmybatismodel.mapper.GoodsMapper">
+    <resultMap id="BaseResultMap" type="com.lzw.springbootmybatismodel.domain.Goods">
+        <id column="goods_id" property="goodsId" jdbcType="INTEGER"/>
+        <result column="goods_name" property="goodsName" jdbcType="VARCHAR"/>
+        <result column="goods_price" property="goodsPrice" jdbcType="DOUBLE"/>
+        <result column="goods_typeid" property="goodsTypeid" jdbcType="INTEGER"/>
+        <result column="goods_desc" property="goodsDesc" jdbcType="VARCHAR"/>
+        <result column="goods_time" property="goodsTime" jdbcType="VARCHAR"/>
+        <result column="goods_state" property="goodsState" jdbcType="INTEGER"/>
+        <result column="goods_img" property="goodsImg" jdbcType="VARCHAR"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+    goods_id, goods_name, goods_price, goods_typeid, goods_desc, goods_time, goods_state, 
+    goods_img
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+        where goods_id = #{goodsId,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from goods
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+  </delete>
+    <insert id="insert" parameterType="com.lzw.springbootmybatismodel.domain.Goods">
+    insert into goods (goods_id, goods_name, goods_price, 
+      goods_typeid, goods_desc, goods_time, 
+      goods_state, goods_img)
+    values (#{goodsId,jdbcType=INTEGER}, #{goodsName,jdbcType=VARCHAR}, #{goodsPrice,jdbcType=DOUBLE}, 
+      #{goodsTypeid,jdbcType=INTEGER}, #{goodsDesc,jdbcType=VARCHAR}, #{goodsTime,jdbcType=VARCHAR}, 
+      #{goodsState,jdbcType=INTEGER}, #{goodsImg,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective" parameterType="com.lzw.springbootmybatismodel.domain.Goods">
+        insert into goods
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                goods_id,
+            </if>
+            <if test="goodsName != null">
+                goods_name,
+            </if>
+            <if test="goodsPrice != null">
+                goods_price,
+            </if>
+            <if test="goodsTypeid != null">
+                goods_typeid,
+            </if>
+            <if test="goodsDesc != null">
+                goods_desc,
+            </if>
+            <if test="goodsTime != null">
+                goods_time,
+            </if>
+            <if test="goodsState != null">
+                goods_state,
+            </if>
+            <if test="goodsImg != null">
+                goods_img,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="goodsId != null">
+                #{goodsId,jdbcType=INTEGER},
+            </if>
+            <if test="goodsName != null">
+                #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsPrice != null">
+                #{goodsPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="goodsTypeid != null">
+                #{goodsTypeid,jdbcType=INTEGER},
+            </if>
+            <if test="goodsDesc != null">
+                #{goodsDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsTime != null">
+                #{goodsTime,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsState != null">
+                #{goodsState,jdbcType=INTEGER},
+            </if>
+            <if test="goodsImg != null">
+                #{goodsImg,jdbcType=VARCHAR},
+            </if>
+        </trim>
+    </insert>
+    <update id="updateByPrimaryKeySelective" parameterType="com.lzw.springbootmybatismodel.domain.Goods">
+        update goods
+        <set>
+            <if test="goodsName != null">
+                goods_name = #{goodsName,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsPrice != null">
+                goods_price = #{goodsPrice,jdbcType=DOUBLE},
+            </if>
+            <if test="goodsTypeid != null">
+                goods_typeid = #{goodsTypeid,jdbcType=INTEGER},
+            </if>
+            <if test="goodsDesc != null">
+                goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsTime != null">
+                goods_time = #{goodsTime,jdbcType=VARCHAR},
+            </if>
+            <if test="goodsState != null">
+                goods_state = #{goodsState,jdbcType=INTEGER},
+            </if>
+            <if test="goodsImg != null">
+                goods_img = #{goodsImg,jdbcType=VARCHAR},
+            </if>
+        </set>
+        where goods_id = #{goodsId,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="com.lzw.springbootmybatismodel.domain.Goods">
+    update goods
+    set goods_name = #{goodsName,jdbcType=VARCHAR},
+      goods_price = #{goodsPrice,jdbcType=DOUBLE},
+      goods_typeid = #{goodsTypeid,jdbcType=INTEGER},
+      goods_desc = #{goodsDesc,jdbcType=VARCHAR},
+      goods_time = #{goodsTime,jdbcType=VARCHAR},
+      goods_state = #{goodsState,jdbcType=INTEGER},
+      goods_img = #{goodsImg,jdbcType=VARCHAR}
+    where goods_id = #{goodsId,jdbcType=INTEGER}
+    </update>
+    <select id="selectAllGoods" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from goods
+    </select>
+    <insert id="insertGoodsList" parameterType="List">
+        insert into goods values
+        <foreach collection="goodsList" item="goods" separator=",">
+            (#{goods.goodsId},#{goods.goodsName},#{goods.goodsPrice},#{goods.goodsTypeid},#{goods.goodsDesc},#{goods.goodsTime},#{goods.goodsState},#{goods.goodsImg})
+        </foreach>
+    </insert>
+</mapper>
