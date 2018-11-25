@@ -131,10 +131,10 @@
         <include refid="Base_Column_List"/>
         from goods
     </select>
-    <insert id="insertGoodsList" parameterType="List">
+    <insert id="insertGoodsList">
         insert into goods values
-        <foreach collection="goodsList" item="goods" separator=",">
-            (#{goods.goodsId},#{goods.goodsName},#{goods.goodsPrice},#{goods.goodsTypeid},#{goods.goodsDesc},#{goods.goodsTime},#{goods.goodsState},#{goods.goodsImg})
+        <foreach collection="list" item="goods" separator=",">
+            (#{goods.goodsId},#{goods.goodsName},#{goods.goodsPrice},#{goods.goodsTypeid},#{goods.goodsDesc},#{goods.goodsImg},#{goods.goodsTime},#{goods.goodsState})
         </foreach>
     </insert>
 </mapper>

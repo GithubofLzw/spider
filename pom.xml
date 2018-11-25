@@ -59,6 +59,20 @@
             <scope>test</scope>
         </dependency>
 
+        <!--用于爬虫的jar包Start-->
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-core</artifactId>
+            <version>0.7.3</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/us.codecraft/webmagic-extension -->
+        <dependency>
+            <groupId>us.codecraft</groupId>
+            <artifactId>webmagic-extension</artifactId>
+            <version>0.7.3</version>
+        </dependency>
+        <!--用于爬虫的jar包End-->
+
     </dependencies>
 
     <build>
